@@ -53,10 +53,11 @@
                                         <input type="text" class="form-control required " id="email" value="<?php echo set_value('email'); ?>" name="username" maxlength="128">
                                     </div>
                                 </div> -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="yApproved">Year Approved</label>
-                                        <input type="number" class="form-control required" id="yApproved" name="yApproved" maxlength="4">
+                                <div class="col-md-4 form-group">
+                                    <label for="yearApproved">Year Approved</label>
+                                    <div class="input-group">
+                                        <input id="yearApproved" type="date" name="yearApproved" class="form-control datepicker" placeholder=""  />
+                                        <span class="input-group-addon"><label for="yearApproved"><i class="fa fa-calendar"></i></label></span>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +78,25 @@
                                     <div class="form-group">
                                         <label for="projectDurTo">Project Duration To </label>
                                         <input type="date" class="form-control input-sm date-picker" id="projectDurTo" name="projectDurTo">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="approvedRequest">Approved Request </label>
+                                        <select class="form-control" name="approvedRequest" id="approvedRequest">
+                                            <option disabled selected value>Approved Request</option>
+                                            <?php
+                                              if(!empty($approvedRequest))
+                                              {
+                                                foreach ($approvedRequest as $ar)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $ar->approvedRequestId ?>"> <?php echo $ar->status ?></option>
+                                                    <?php
+                                                }
+                                              }
+                                            ?>
+                                          </select>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +264,20 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="fundstatus">Fund Status</label>
-                                        <input type="text" class="form-control equalTo" id="fundstatus" name="fundstatus">
+                                        <select class="form-control" name="fundStatus" id="fundStatus">
+                                            <option disabled selected value>Fund Status</option>
+                                            <?php
+                                              if(!empty($fundStatus))
+                                              {
+                                                foreach ($fundStatus as $fs)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $fs->fundStatusId ?>"> <?php echo $fs->status ?></option>
+                                                    <?php
+                                                }
+                                              }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +297,20 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="prostatus">Project Status</label>
-                                        <input type="text" class="form-control equalTo height=100" id="prostatus" name="prostatus" height=100>
+                                        <select class="form-control" placeholder="try" name="projectStatus" id="projectStatus">
+                                            <option disabled selected value>Project Status</option>
+                                            <?php
+                                              if(!empty($projectStatus))
+                                              {
+                                                foreach ($projectStatus as $ps)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $ps->projectStatusId ?>"> <?php echo $ps->status ?></option>
+                                                    <?php
+                                                }
+                                              }
+                                            ?>
+                                          </select>
                                     </div>
                                 </div>
                             </div>
@@ -337,3 +383,4 @@
     
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>

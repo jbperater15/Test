@@ -30,8 +30,11 @@ class Project extends BaseController
     function addNewProject()
     {
         $this->global['pageTitle'] = 'CodeInsect : Dashboard';
-        
-        $this->loadViews("project/addNewProject1", $this->global, NULL , NULL);
+
+        $data['fundStatus'] = $this->project_model->getFundStatus();
+        $data['projectStatus'] = $this->project_model->getProjectStatus();
+        $data['approvedRequest'] = $this->project_model->getApprovedRequest();
+        $this->loadViews("project/addNewProject1", $this->global, $data , NULL);
     }
 
     function insertNewProject()

@@ -66,6 +66,12 @@
             minViewMode: "months"
         });
 
+        // $("#yearApproved").datepicker( {
+        //     format: "yyyy",
+        //     viewMode: "years", 
+        //     minViewMode: "years"
+        // });
+
     </script>
   </body>
 </html>
