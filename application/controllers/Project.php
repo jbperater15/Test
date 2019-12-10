@@ -66,7 +66,7 @@ class Project extends BaseController
                 $dateReleased = $this->input->post('dateReleased');
                 $projectDurFrom = $this->input->post('projectDurFrom');
                 $projectDurTo = $this->input->post('projectDurTo');
-                $collab = $this->input->post('collab');
+                $proponent = $this->input->post('proponent');
                 $beneficiries = $this->input->post('beneficiries');
                 $province = $this->input->post('province');
                 $Dreleased = $this->input->post('Dreleased');
@@ -91,7 +91,7 @@ class Project extends BaseController
                                 'dateReleased'=> $dateReleased,
                                 'dateDurFrom'=>$projectDurFrom, 
                                 'dateDurTo'=>$projectDurTo,
-                                'collaborator'=>$collab, 
+                                'proponent'=>$proponent, 
                                 'beneficiaries'=>$beneficiries, 
                                 'province'=>$province, 
                                 'budgetdatereleased'=>$Dreleased, 
@@ -166,21 +166,26 @@ class Project extends BaseController
             $toDate = $this->input->post('toDate');
             $projectStatus = $this->input->post('projectStatus');
             $fundStatus = $this->input->post('fundStatus');
+            $approvedRequest = $this->input->post('approvedRequest');
+            $monthyear = $this->input->post('monthyear');
+            
             
             $data['searchText'] = $searchText;
             $data['fromDate'] = $fromDate;
             $data['toDate'] = $toDate;
+            $data['monthyear'] = $monthyear;
            
             $data['fundStatus'] = $this->project_model->getFundStatus();
             $data['projectStatus'] = $this->project_model->getProjectStatus();
+            $data['approvedRequest'] = $this->project_model->getApprovedRequest();
             
             $this->load->library('pagination');
             
-            $count = $this->project_model->projectListing1Count($searchText,$fromDate,$toDate,$projectStatus,$fundStatus);
+            $count = $this->project_model->projectListing1Count($searchText,$fromDate,$toDate,$projectStatus,$fundStatus,$approvedRequest,$monthyear);
 
             $returns = $this->paginationCompress ( "projectListing1/", $count, 10 );
             
-            $data['userRecords'] = $this->project_model->projectListing1($searchText, $fromDate, $toDate, $returns["page"], $returns["segment"], $projectStatus, $fundStatus);
+            $data['userRecords'] = $this->project_model->projectListing1($searchText, $fromDate, $toDate, $returns["page"], $returns["segment"], $projectStatus, $fundStatus, $approvedRequest, $monthyear);
 
             $this->global['pageTitle'] = 'Project Listing';
             $this->global['count'] = $count;

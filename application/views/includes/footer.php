@@ -60,6 +60,12 @@
             },1000);
         })
 
+        $("#monthyear").datepicker( {
+            format: "yyyy-mm",
+            viewMode: "months", 
+            minViewMode: "months"
+        });
+
     </script>
   </body>
 </html>

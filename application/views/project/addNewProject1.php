@@ -83,8 +83,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="collab">Collaborating Agency</label>
-                                        <input type="text" class="form-control required" id="collab" name="collab">
+                                        <label for="proponent">Proponent</label>
+                                        <input type="text" class="form-control required" id="proponent" name="proponent">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

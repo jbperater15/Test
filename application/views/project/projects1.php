@@ -10,16 +10,22 @@
     <section class="content">
       <form action="<?php echo base_url() ?>projectListing1" method="POST" id="searchList">
         <div class="row">
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 form-group">
+            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-12 form-group">
               <div class="input-group">
-                <input id="fromDate" type="text" name="fromDate" value="<?php echo $fromDate; ?>" class="form-control datepicker" placeholder="From Date" autocomplete="off" />
+                <input id="fromDate" type="text" name="fromDate" value="<?php echo $fromDate; ?>" class="form-control datepicker" placeholder="From Date" autocomplete="off" onfocus="document.getElementById('monthyear').value = ''" />
                 <span class="input-group-addon"><label for="fromDate"><i class="fa fa-calendar"></i></label></span>
               </div>
             </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 form-group">
+            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-12 form-group">
               <div class="input-group">
-                <input id="toDate" type="text" name="toDate" value="<?php echo $toDate; ?>" class="form-control datepicker" placeholder="To Date" autocomplete="off" />
+                <input id="toDate" type="text" name="toDate" value="<?php echo $toDate; ?>" class="form-control datepicker" placeholder="To Date" autocomplete="off" onfocus="document.getElementById('monthyear').value = ''" />
                 <span class="input-group-addon"><label for="toDate"><i class="fa fa-calendar"></i></label></span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-4 col-xs-12 form-group">
+              <div class="input-group">
+                <input id="monthyear" type="text" name="monthyear" value="<?php echo $monthyear; ?>" class="form-control datepicker" placeholder="Month Project End" autocomplete="off" onfocus="document.getElementById('toDate').value = '';document.getElementById('fromDate').value = ''" />
+                <span class="input-group-addon"><label for="monthyear"><i class="fa fa-calendar"></i></label></span>
               </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 form-group">
@@ -54,7 +60,23 @@
                 ?>
               </select>
             </div>
-            <div class="col-lg-2 col-md-8 col-sm-12 col-xs-12 form-group">
+            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 form-group">
+              <select class="form-control" name="approvedRequest" id="approvedRequest">
+                <option disabled selected value>Approved Request</option>
+                <?php
+                  if(!empty($approvedRequest))
+                  {
+                    foreach ($approvedRequest as $ar)
+                    {
+                        ?>
+                        <option value="<?php echo $ar->approvedRequestId ?>"> <?php echo $ar->status ?></option>
+                        <?php
+                    }
+                  }
+                ?>
+              </select>
+            </div>
+            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12 form-group">
               <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control" placeholder="Search Text"/>
             </div>
             <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 form-group">
@@ -78,15 +100,17 @@
                     <tr>
                       <th>PROJECT TITLE</th>
                       <th>Project Code</th>
-                      <th>Collaborator</th>
+                      <th>Proponent</th>
                       <th>Year Charged</th>
                       <th>Province</th>
-                      <th>Date Duration From</th>
-                      <th>Date Duration To</th>
-                      <th>Project Status</th>
+                      <th>Project Start</th>
+                      <th>Project End</th>
+                      <th>Fund Status</th>
                       <th>Amount Released</th>
                       <th>Amount Due Refund</th>
-                      <th>Fund Status</th>
+                      <th>Amount Liquidated</th>
+                      <th>Approved Request</th>
+                      <th>Project Status</th>
                       <!-- <th>Refund</th> -->
                     </tr>
                     <?php
@@ -98,16 +122,18 @@
                     <tr>
                       <td><?php echo $record->projTitle ?></td>
                         <td><?php echo $record->projCode ?></td>
-                         <td><?php echo $record->collaborator ?></td>
+                         <td><?php echo $record->proponent ?></td>
                          <td><?php echo $record->yearCharged ?></td>
                         <!-- <td><?php echo $record->projLocation ?></td> -->
                         <td><?php echo $record->province ?></td>
-                        <td><?php echo $record->dateDurFrom ?></td>
-                        <td><?php echo $record->dateDurTo ?></td>
-                        <td><?php echo $record->projectStatus ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($record->dateDurFrom)) ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($record->dateDurTo)) ?></td>
+                        <td><?php echo $record->fundStatus ?></td>
                         <td><?php echo $record->amountReleased ?></td>
                         <td><?php echo $record->amountDueRefund ?></td>
-                        <td><?php echo $record->fundStatus ?></td>
+                        <td><?php echo $record->amountLiquidated ?></td>
+                        <td><?php echo $record->approvedRequest ?></td>
+                        <td><?php echo $record->projectStatus ?></td>
                     </tr>
                     <?php
                         }
