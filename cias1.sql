@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2019 at 10:14 AM
--- Server version: 10.1.40-MariaDB
--- PHP Version: 7.3.5
+-- Generation Time: Dec 10, 2019 at 09:47 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 5.6.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -119,7 +119,7 @@ CREATE TABLE `projects_monitoring` (
   `dateReleased` date NOT NULL,
   `dateDurFrom` date DEFAULT NULL,
   `dateDurTo` date DEFAULT NULL,
-  `collaborator` varchar(128) NOT NULL,
+  `proponent` varchar(128) NOT NULL,
   `budgetdatereleased` date NOT NULL,
   `amountReleased` int(11) DEFAULT NULL,
   `amountLiquidated` int(11) DEFAULT NULL,
@@ -133,25 +133,47 @@ CREATE TABLE `projects_monitoring` (
   `quarStatProgRep` longtext,
   `amountDueRefund` text,
   `refund` text,
-  `reques` text
+  `reques` text,
+  `approvedRequest` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projects_monitoring`
 --
 
-INSERT INTO `projects_monitoring` (`projectId`, `projTitle`, `projCode`, `projLocation`, `province`, `beneficiaries`, `yearCharged`, `dateReleased`, `dateDurFrom`, `dateDurTo`, `collaborator`, `budgetdatereleased`, `amountReleased`, `amountLiquidated`, `unliquitedBalance`, `amountDueLiquidation`, `financialReport`, `fundStatus`, `completionReport`, `terminalReport`, `projectStatus`, `quarStatProgRep`, `amountDueRefund`, `refund`, `reques`) VALUES
-(1, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-12-07', '2019-12-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', ''),
-(2, 'joshua project nnnnn nnnnnnnnnnnnnnnnn nnnnnnnnnnn nnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnn nnnnnnnnnnn', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-03-09', '2019-03-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', ''),
-(3, 'joshua project', 'dadw', 'dwad', 'dawdaw', 'dawd', 1999, '0000-00-00', '2019-03-09', '2020-03-09', 'dad', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', ''),
-(4, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'dawd', 1999, '2019-12-06', '2019-12-20', '2020-03-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 4, '', '', 2, '', '', '', ''),
-(5, 'whaay', 'code', 'dwad', 'bukidnon', 'wala', 2009, '0000-00-00', '2019-12-20', '2019-12-30', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', ''),
-(6, 'title ni', 'code ni', 'project loc', 'cdo', 'yiu', 2001, '0000-00-00', '2019-12-05', '2019-12-30', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', ''),
-(7, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 2001, '0000-00-00', '2019-12-26', '2019-12-28', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', ''),
-(8, 'title ikaw duha', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1997, '0000-00-00', '2019-12-04', '2019-12-17', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 4, '', '', 2, '', '', '', ''),
-(9, 'joshua project', 'code2', 'dwad1', 'dawda', 'fafa', 1999, '2019-12-01', '2019-12-01', '2019-12-10', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', ''),
-(10, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-12-02', '2019-12-03', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', ''),
-(11, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-03-09', '2019-12-10', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', '');
+INSERT INTO `projects_monitoring` (`projectId`, `projTitle`, `projCode`, `projLocation`, `province`, `beneficiaries`, `yearCharged`, `dateReleased`, `dateDurFrom`, `dateDurTo`, `proponent`, `budgetdatereleased`, `amountReleased`, `amountLiquidated`, `unliquitedBalance`, `amountDueLiquidation`, `financialReport`, `fundStatus`, `completionReport`, `terminalReport`, `projectStatus`, `quarStatProgRep`, `amountDueRefund`, `refund`, `reques`, `approvedRequest`) VALUES
+(1, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-12-07', '2019-12-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', '', 1),
+(2, 'joshua project nnnnn nnnnnnnnnnnnnnnnn nnnnnnnnnnn nnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnn nnnnnnnnnnn', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '0000-00-00', '2019-03-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', '', 0),
+(3, 'joshua project', 'dadw', 'dwad', 'dawdaw', 'dawd', 1999, '0000-00-00', '2019-03-09', '2020-03-09', 'dad', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', '', 0),
+(4, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'dawd', 1999, '2019-12-06', '2019-12-20', '2020-03-09', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 4, '', '', 2, '', '', '', '', 0),
+(5, 'whaay', 'code', 'dwad', 'bukidnon', 'wala', 2009, '0000-00-00', '2019-12-20', '2019-12-30', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', '', 0),
+(6, 'title ni', 'code ni', 'project loc', 'cdo', 'yiu', 2001, '0000-00-00', '2019-12-05', '2019-12-30', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', '', 0),
+(7, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 2001, '0000-00-00', '2019-12-26', '2019-12-28', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', '', 0),
+(8, 'title ikaw duha', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1997, '0000-00-00', '2019-12-04', '2019-12-17', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 4, '', '', 2, '', '', '', '', 0),
+(9, 'joshua project', 'code2', 'dwad1', 'dawda', 'fafa', 1999, '2019-12-01', '2019-12-01', '2019-12-10', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 1, '', '', 1, '', '', '', '', 0),
+(10, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-12-02', '2019-12-03', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 2, '', '', 2, '', '', '', '', 0),
+(11, 'joshua project', 'FYHNPVTA', 'dwad', 'dawda', 'fafa', 1999, '0000-00-00', '2019-03-09', '2019-12-10', 'dawd', '0000-00-00', 0, 0, 0, NULL, '', 3, '', '', 1, '', '', '', '', 0),
+(12, 'Project Tittlera ni siya', 'code 115', 'secret', 'bukidnon', 'Ako', 1999, '2019-12-11', '2019-12-10', '2020-03-10', 'Joshua Brian Perater', '0000-00-00', 0, 0, 0, NULL, '', 0, '', '', 0, '', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_approved_request`
+--
+
+CREATE TABLE `tbl_approved_request` (
+  `approvedRequestId` int(11) NOT NULL,
+  `status` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_approved_request`
+--
+
+INSERT INTO `tbl_approved_request` (`approvedRequestId`, `status`) VALUES
+(1, 'Reprogrammed'),
+(2, 'Extended'),
+(3, 'Reprogrammed and Extended');
 
 -- --------------------------------------------------------
 
@@ -211,7 +233,9 @@ INSERT INTO `tbl_last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userA
 (11, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-05 00:50:01'),
 (12, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-05 08:56:08'),
 (13, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-06 01:51:59'),
-(14, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-09 01:53:14');
+(14, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-09 01:53:14'),
+(15, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-10 01:55:18'),
+(16, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Windows 10', '2019-12-10 06:32:10');
 
 -- --------------------------------------------------------
 
@@ -329,7 +353,14 @@ ALTER TABLE `ci_sessions`
 ALTER TABLE `projects_monitoring`
   ADD PRIMARY KEY (`projectId`),
   ADD KEY `fundStatus` (`fundStatus`),
-  ADD KEY `projectStatus` (`projectStatus`);
+  ADD KEY `projectStatus` (`projectStatus`),
+  ADD KEY `approvedRequest` (`approvedRequest`);
+
+--
+-- Indexes for table `tbl_approved_request`
+--
+ALTER TABLE `tbl_approved_request`
+  ADD PRIMARY KEY (`approvedRequestId`);
 
 --
 -- Indexes for table `tbl_fund_status`
@@ -375,7 +406,13 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `projects_monitoring`
 --
 ALTER TABLE `projects_monitoring`
-  MODIFY `projectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `projectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `tbl_approved_request`
+--
+ALTER TABLE `tbl_approved_request`
+  MODIFY `approvedRequestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_fund_status`
@@ -387,7 +424,7 @@ ALTER TABLE `tbl_fund_status`
 -- AUTO_INCREMENT for table `tbl_last_login`
 --
 ALTER TABLE `tbl_last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_project_status`
