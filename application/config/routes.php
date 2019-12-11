@@ -103,6 +103,8 @@ $route['addNewProjectStatusInsert'] = "project/addNewProjectStatus";
 $route['addNewFundStatus'] = "project/addNewFundStatusView";
 $route['addNewFundStatusInsert'] = "project/addNewFundStatus";
 
+$route['createExcel'] = "project/createExcel";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

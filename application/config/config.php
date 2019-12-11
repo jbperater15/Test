@@ -138,7 +138,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = 'vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -146,7 +146,7 @@ $config['composer_autoload'] = FALSE;
 |--------------------------------------------------------------------------
 |
 | This lets you specify which characters are permitted within your URLs.
-| When someone tries to submit a URL with disallowed characters they will
+| When someone tries to submit a URL with dis`allowed characters they will
 | get a warning message.
 |
 | As a security measure you are STRONGLY encouraged to restrict URLs to

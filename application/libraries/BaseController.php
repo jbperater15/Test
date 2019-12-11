@@ -140,6 +140,7 @@ class BaseController extends CI_Controller {
 		$config ['last_tag_open'] = '<li class="arrow">';
 		$config ['last_link'] = 'Last';
 		$config ['last_tag_close'] = '</li>';
+		
 	
 		$this->pagination->initialize ( $config );
 		$page = $config ['per_page'];

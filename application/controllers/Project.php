@@ -1,7 +1,11 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 require APPPATH . '/libraries/BaseController.php';
+//require APPPATH . '/vendor/PhpOffice/PhpSpreadsheet/src/Bootstrap.php';
 
+
+use vendor\PhpOffice\PhpSpreadsheet\src\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Project extends BaseController
 {
@@ -395,6 +399,33 @@ class Project extends BaseController
             }
         }
     }
+
+    public function createExcel() {
+        $fileName = 'employee.xlsx';  
+        $employeeData = $this->project_model->getApprovedRequest();
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'approvedRequestId');
+        $sheet->setCellValue('B1', 'status');
+        // $sheet->setCellValue('C1', 'Skills');
+        // $sheet->setCellValue('D1', 'Address');
+        // $sheet->setCellValue('E1', 'Age');
+        // $sheet->setCellValue('F1', 'Designation');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['approvedRequestId']);
+            $sheet->setCellValue('B' . $rows, $val['status']);
+            // $sheet->setCellValue('C' . $rows, $val['skills']);
+            // $sheet->setCellValue('D' . $rows, $val['address']);
+            // $sheet->setCellValue('E' . $rows, $val['age']);
+            // $sheet->setCellValue('F' . $rows, $val['designation']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save("upload/".$fileName);
+        header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."/upload/".$fileName);              
+    }    
     
 }
 

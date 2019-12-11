@@ -44,19 +44,12 @@
                                     <div class="form-group">
                                         <label for="projectLoc">Project Location</label>
                                         <input type="text" class="form-control required" id="projectLoc" name="projectLoc" maxlength="128">
-                                    </div>
-                                    
+                                    </div> 
                                 </div>
-                                <!-- <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="email">Project Type</label>
-                                        <input type="text" class="form-control required " id="email" value="<?php echo set_value('email'); ?>" name="username" maxlength="128">
-                                    </div>
-                                </div> -->
                                 <div class="col-md-4 form-group">
                                     <label for="yearApproved">Year Approved</label>
                                     <div class="input-group">
-                                        <input id="yearApproved" type="date" name="yearApproved" class="form-control datepicker" placeholder=""  />
+                                        <input id="yearApproved" type="text" name="yearApproved" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
                                         <span class="input-group-addon"><label for="yearApproved"><i class="fa fa-calendar"></i></label></span>
                                     </div>
                                 </div>
@@ -65,19 +58,28 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dateReleased">Date Released</label>
-                                        <input type="date" class="form-control input-sm date-picker" id="dateReleased" name="dateReleased">
+                                        <div class="input-group">
+                                            <input id="dateReleased" type="text" name="dateReleased" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <span class="input-group-addon"><label for="dateReleased"><i class="fa fa-calendar"></i></label></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectDurFrom">Project Duration From </label>
-                                        <input type="date" class="form-control input-sm date-picker" id="projectDurFrom" name="projectDurFrom">
+                                        <label for="projectDurFrom">Project Start</label>
+                                        <div class="input-group">
+                                            <input id="projectDurFrom" type="text" name="projectDurFrom" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <span class="input-group-addon"><label for="projectDurFrom"><i class="fa fa-calendar"></i></label></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectDurTo">Project Duration To </label>
-                                        <input type="date" class="form-control input-sm date-picker" id="projectDurTo" name="projectDurTo">
+                                        <label for="projectDurTo">Project Start</label>
+                                        <div class="input-group">
+                                            <input id="projectDurTo" type="text" name="projectDurTo" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <span class="input-group-addon"><label for="projectDurTo"><i class="fa fa-calendar"></i></label></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -114,76 +116,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="password">Sector</label>
-                                        <input type="password" class="form-control required" id="password" name="password">
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="row">
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group form">
-                                        <label for="cpassword">Address</label>
-                                        <input type="password" class="form-control required equalTo" id="cpassword" name="cpassword">
-                                    </div>
-                                </div> -->
                                 <div class="col-md-12">
                                     <div class="form-group form">
                                         <label for="province">Province</label>
                                         <input type="text" class="form-control required equalTo" id="province" name="province">
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="password">City</label>
-                                        <input type="password" class="form-control required" id="password" name="password">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="cpassword">District</label>
-                                        <input type="password" class="form-control required equalTo" id="cpassword" name="cpassword">
-                                    </div>
-                                </div> -->
                             </div>
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="password">Status</label>
-                                        <input type="password" class="form-control required" id="password" name="password">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="mobile">Collaborators</label>
-                                        <input type="text" class="form-control required digits" id="mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" maxlength="10">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <select class="form-control required" id="role" name="role">
-                                            <option value="0">Select Role</option>
-                                            <?php
-                                            if(!empty($roles))
-                                            {
-                                                foreach ($roles as $rl)
-                                                {
-                                                    ?>
-                                                    <option value="<?php echo $rl->roleId ?>" <?php if($rl->roleId == set_value('role')) {echo "selected=selected";} ?>><?php echo $rl->role ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>    
-                            </div> -->
                         </div><!-- /.box-body -->
     
                         
@@ -226,26 +166,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                        <label for="cpassword">Project Cost</label>
-                                        <input type="password" class="form-control equalTo" id="cpassword" name="cpassword">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="password">Amount Due</label>
-                                            <input type="password" class="form-control" id="password" name="password">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="cpassword">Refunded</label>
-                                            <input type="password" class="form-control equalTo" id="cpassword" name="cpassword">
-                                        </div>
-                                    </div>
-                                </div> -->
+                                
                             </div>
                         </div>
 
@@ -384,3 +305,22 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+
+        jQuery('.datepicker').datepicker({
+          autoclose: true,
+          format : "dd-mm-yyyy"
+        });
+        jQuery('.resetFilters').click(function(){
+          $(this).closest('form').find("input[type=text]").val("");
+        })
+
+        $(document).ready(function() {
+          $('#example').DataTable( {
+              "pagingType": "full_numbers"
+          } );
+      } );
+    });
+
+</script>

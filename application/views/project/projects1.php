@@ -76,8 +76,15 @@
                 ?>
               </select>
             </div>
-            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12 form-group">
+            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 form-group">
               <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control" placeholder="Search Text"/>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 form-group">
+              <form>
+                <a href="<?php echo base_url(); ?>createExcel">
+                  <input type="button" class="btn btn-md btn-success btn-block pull-right" value="Export" name="">
+                </a>
+             </form>
             </div>
             <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 form-group">
               <button type="submit" class="btn btn-md btn-primary btn-block searchList pull-right"><i class="fa fa-search" aria-hidden="true"></i></button> 

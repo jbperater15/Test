@@ -67,9 +67,9 @@
         });
 
         // $("#yearApproved").datepicker( {
-        //     format: "yyyy",
-        //     viewMode: "years", 
-        //     minViewMode: "years"
+        //      format: "yyyy-mm",
+        //      viewMode: "months", 
+        //      minViewMode: "months"
         // });
 
     </script>
