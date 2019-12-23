@@ -94,6 +94,7 @@ $route['insertNewProject'] = "project/insertNewProject";
 $route['projectListing'] = "project/projectListing";
 $route['projectListing1'] = "project/projectListing1";
 $route['projectListing1/(:num)'] = "project/projectListing1/$1";
+$route['projectListing2'] = "project/projectListing2";
 $route['getNotify'] = "project/getNotify";
 $route['getDate'] = "project/getDate";
 
@@ -102,6 +103,11 @@ $route['addNewProjectStatusInsert'] = "project/addNewProjectStatus";
 
 $route['addNewFundStatus'] = "project/addNewFundStatusView";
 $route['addNewFundStatusInsert'] = "project/addNewFundStatus";
+
+$route['deleteProject'] = "project/deleteProject";
+$route['editOldProject/(:num)'] = "project/editOldProject/$1";
+$route['updateOldProject'] = "project/updateOldProject";
+$route['updateProject'] = "project/updateProject";
 
 $route['createExcel'] = "project/createExcel";
 

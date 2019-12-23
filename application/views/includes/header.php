@@ -26,6 +26,10 @@
     <script type="text/javascript">
         var baseURL = "<?php echo base_url(); ?>";
     </script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatable/datatables.min.css" />
+
+ 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/bower_components/datatable/datatables.min.js"></script>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

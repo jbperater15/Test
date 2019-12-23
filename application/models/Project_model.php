@@ -25,6 +25,34 @@ class Project_model extends CI_Model
         return $insert_id;
     }
 
+    function deleteProject($projectId)
+    {
+        $this->db->where('projectId', $projectId);
+        $this->db->delete('projects_monitoring');
+
+        return $this->db->affected_rows();
+    }
+
+    function editProject($projectInfo, $projectId)
+    {
+        $this->db->where('projectId', $projectId);
+        $this->db->update('projects_monitoring', $projectInfo);
+        var_dump($projectInfo);
+        
+        return TRUE;
+    }
+
+     function getProjectData($id)
+    {
+        $this->db->select('*');
+        $this->db->from('projects_monitoring');
+        $this->db->where('projectId', $id);
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
+
     function projectListingCount($searchText = '')
     {
         $this->db->select('*');
@@ -150,6 +178,72 @@ class Project_model extends CI_Model
         $result = $query->result(); 
 
         return $result;
+    }
+
+    function getProjectListing($searchText)
+    {
+        $this->db->select('BaseTbl.projectId, BaseTbl.projTitle, BaseTbl.projCode, BaseTbl.projLocation, BaseTbl.province, BaseTbl.beneficiaries, BaseTbl.yearCharged, BaseTbl.yearCharged, BaseTbl.dateReleased, BaseTbl.dateDurFrom, BaseTbl.dateDurTo, BaseTbl.proponent, BaseTbl.budgetdatereleased, BaseTbl.amountReleased, BaseTbl.amountLiquidated, BaseTbl.unliquitedBalance, BaseTbl.amountDueLiquidation, BaseTbl.financialReport, Fund.status as fundStatus, BaseTbl.completionReport, BaseTbl.terminalReport, Project.Status as projectStatus, BaseTbl.quarStatProgRep, ApprovedRequest.status as approvedRequest, BaseTbl.amountDueRefund, BaseTbl.refund, BaseTbl.reques');
+        $this->db->from('projects_monitoring as BaseTbl');
+        $this->db->join('tbl_fund_status as Fund', 'Fund.fundStatusId = BaseTbl.fundStatus','left');
+        $this->db->join('tbl_project_status as Project', 'Project.projectStatusId = BaseTbl.projectStatus','left');
+        $this->db->join('tbl_approved_request as ApprovedRequest', 'ApprovedRequest.approvedRequestId = BaseTbl.approvedRequest','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.projTitle  LIKE '%".$searchText."%'
+                            OR  BaseTbl.projCode  LIKE '%".$searchText."%'
+                            OR  BaseTbl.projLocation  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->order_by('BaseTbl.projectId', 'DESC');
+        $query = $this->db->get();
+        
+        $result = $query->result(); 
+
+        return $query;
+    }
+
+    function projectListing2($searchText, $fromDate, $toDate, $projectStatus, $fundStatus, $approvedRequest, $monthyear)
+    {
+        $this->db->select('BaseTbl.projectId, BaseTbl.projTitle, BaseTbl.projCode, BaseTbl.projLocation, BaseTbl.province, BaseTbl.beneficiaries, BaseTbl.yearCharged, BaseTbl.yearCharged, BaseTbl.dateReleased, BaseTbl.dateDurFrom, BaseTbl.dateDurTo, BaseTbl.proponent, BaseTbl.budgetdatereleased, BaseTbl.amountReleased, BaseTbl.amountLiquidated, BaseTbl.unliquitedBalance, BaseTbl.amountDueLiquidation, BaseTbl.financialReport, Fund.status as fundStatus, BaseTbl.completionReport, BaseTbl.terminalReport, Project.Status as projectStatus, BaseTbl.quarStatProgRep, ApprovedRequest.status as approvedRequest, BaseTbl.amountDueRefund, BaseTbl.refund, BaseTbl.reques');
+        $this->db->from('projects_monitoring as BaseTbl');
+        $this->db->join('tbl_fund_status as Fund', 'Fund.fundStatusId = BaseTbl.fundStatus','left');
+        $this->db->join('tbl_project_status as Project', 'Project.projectStatusId = BaseTbl.projectStatus','left');
+        $this->db->join('tbl_approved_request as ApprovedRequest', 'ApprovedRequest.approvedRequestId = BaseTbl.approvedRequest','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.projTitle  LIKE '%".$searchText."%'
+                            OR  BaseTbl.projCode  LIKE '%".$searchText."%'
+                            OR  BaseTbl.projLocation  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        if(!empty($fromDate)) {
+            $likeCriteria = "DATE_FORMAT(BaseTbl.dateDurFrom, '%Y-%m-%d' ) >= '".date('Y-m-d', strtotime($fromDate))."'";
+            $this->db->where($likeCriteria);
+        }
+        if(!empty($toDate)) {
+            $likeCriteria = "DATE_FORMAT(BaseTbl.dateDurTo, '%Y-%m-%d' ) <= '".date('Y-m-d', strtotime($toDate))."'";
+            $this->db->where($likeCriteria);
+        }
+        if(!empty($monthyear)) {
+            $likeCriteria = "DATE_FORMAT(BaseTbl.dateDurTo, '%Y-%m' ) = '".date('Y-m', strtotime($monthyear))."'";
+            $this->db->where($likeCriteria);  
+        }
+        if(!empty($projectStatus)) {
+            $likeCriteria = "BaseTbl.projectStatus  = '".$projectStatus."'";
+            $this->db->where($likeCriteria);
+        }
+        if(!empty($fundStatus)) {
+            $likeCriteria = "BaseTbl.fundStatus  = '".$fundStatus."'";
+            $this->db->where($likeCriteria);
+        }
+        if(!empty($approvedRequest)) {
+            $likeCriteria = "BaseTbl.approvedRequest = '".$approvedRequest."'";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->order_by('BaseTbl.projectId', 'DESC');
+        $query = $this->db->get();
+        
+        // $result = $query->result(); 
+
+        return $query->result();
     }
 
      function getNotify($date)

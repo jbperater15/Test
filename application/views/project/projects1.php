@@ -76,12 +76,12 @@
                 ?>
               </select>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 form-group">
+            <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12 form-group">
               <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control" placeholder="Search Text"/>
             </div>
-            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 form-group">
+             <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 form-group">
               <form>
-                <a href="<?php echo base_url(); ?>createExcel">
+                <a href="<?php echo base_url(); ?>project/createXLS">
                   <input type="button" class="btn btn-md btn-success btn-block pull-right" value="Export" name="">
                 </a>
              </form>
@@ -103,7 +103,7 @@
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
+                  <table class="table table-hover" id="mytable">
                     <tr>
                       <th>PROJECT TITLE</th>
                       <th>Project Code</th>
@@ -126,7 +126,7 @@
                         foreach($userRecords as $record)
                         {
                     ?>
-                    <tr>
+                    <tr id="myrow">
                       <td><?php echo $record->projTitle ?></td>
                         <td><?php echo $record->projCode ?></td>
                          <td><?php echo $record->proponent ?></td>
@@ -141,6 +141,10 @@
                         <td><?php echo $record->amountLiquidated ?></td>
                         <td><?php echo $record->approvedRequest ?></td>
                         <td><?php echo $record->projectStatus ?></td>
+                        <td class="text-center">
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->projectId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
+                          <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->projectId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                      </td>
                     </tr>
                     <?php
                         }
@@ -157,6 +161,7 @@
         </div>
     </section>
 </div>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
 <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
@@ -179,6 +184,69 @@
           $('#example').DataTable( {
               "pagingType": "full_numbers"
           } );
-      } );
+        } );
+
+        // $("#searchText").keyup(function(){
+        //      var str=  $("#searchText").val();
+        //      if(str == "") {
+        //              // $( "#txtHint" ).html("<b>Book information will be listed here...</b>"); 
+        //              console.log('type');
+        //      }else {
+        //              $.get( "<?php echo base_url();?>project/projectListing1?txt="+ str,{txt: str}, function( data ){
+        //                  $( "#mytable" ).html('<td>'+str+'</td>');  
+        //                  console.log('type');
+        //                  console.log(str);
+        //           });
+        //      }
+        //  });  
+
+        // $("#searchText").keyup(function(){
+        //   if($("#searchText").val().length>3){
+        //   $.ajax({
+        //    type: "post",
+        //    url: "<?php echo base_url();?>project/getProjectlisting",
+        //    cache: false,    
+        //    data:'searchText='+$("#searchText").val(),
+        //    success: function(response){
+        //     $('#myrow').html("");
+        //     var obj = JSON.parse(response);
+        //     if(obj.length>0){
+        //      try{
+        //       var items=[];  
+        //       $.each(obj, function(i,val){           
+        //           items.push($('<li/>').text(val.projTitle + " WAaahhhhhhhhhhhhhh " + val.projTitle));
+        //       }); 
+        //       $('#myrow').append.apply($('#myrow'), items);
+        //      }catch(e) {  
+        //       alert('Exception while request..');
+        //      }  
+        //     }else{
+        //      $('#myrow').html($('<li/>').text("No Data Found"));  
+        //     }  
+            
+        //    },
+        //    error: function(){      
+        //     alert('Error while request..');
+        //    }
+        //   });
+        //   }
+        //   return false;
+        //    });
+
+        $("#searchText").keyup(function(){
+          console.log('wala');
+          var str=  $("#searchText").val();
+               if(str == "") {
+                       $( "#myrow" ).html("<b>Book information will be listed here...</b>"); 
+               }else {
+                       $.get( "<?php echo base_url();?>project/getProjectlisting?id="+str, function( data ){
+                           $( "#myrow" ).html( data );  
+                    });
+               }
+
+
+        }); 
+
+
     });
 </script>

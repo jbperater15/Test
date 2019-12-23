@@ -2,9 +2,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>CodeInsect</b> Admin System | Version 1.5
+          <b>Dost X</b> Admin System | Version 1.5
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="<?php echo base_url(); ?>">CodeInsect</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="<?php echo base_url(); ?>">Dost X</a>.</strong> All rights reserved.
     </footer>
     
     <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -22,43 +22,42 @@
             y.addClass('active');
             y.parent().addClass('active');
 
-        $(document).ready(function(){
-            setInterval(function(){
-                console.log('try');
-                $.ajax({
-                    url  : "<?php echo base_url(); ?>getNotify",
-                    type : "POST",
-                    dataType : "json",  
-                    // data : {},
-                    success: function(data){
-                        $("#notification-level").html(data.count);
-                    }
-                });
+         $(document).ready(function(){
+             setInterval(function(){
+                 console.log('try');
+                 $.ajax({
+                     url  : "<?php echo base_url(); ?>getNotify",
+                     type : "POST",
+                     dataType : "json",  
+                      data : {},
+                     success: function(data){
+                         $("#notification-level").html(data.count);
+                     }
+                 });
 
                 $.ajax({
                     url  : "<?php echo base_url(); ?>getDate",
                     contentType: "application/json;charset=utf-8",
                     type : "POST",
                     dataType : "json",  
-                    //data : {},
+                    data : {},
                     success: function(data){
                         var i;
                         $("#notification").html('');
-                        for(i=0; i<Object.keys(data).length; i++){
+                        
+
+                        if(i<Object.keys(data).length){
+                            for(i=0; i<Object.keys(data).length; i++){
                             console.log('nothing');
                             $("#notification").append('<li class="header"> End of Project in 3 months : '+data[i].projTitle + '</li>');
-
+                            }
                         }
 
                     }
 
-
-
-
-
                 });
-            },1000);
-        })
+             },1000);
+         })
 
         $("#monthyear").datepicker( {
             format: "yyyy-mm",

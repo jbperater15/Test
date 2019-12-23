@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
+        <i class="fa fa-users"></i> Projet Management
+        <small>Add Project</small>
       </h1>
     </section>
     
@@ -29,7 +29,7 @@
                                 <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label for="title">Project Title</label>
-                                        <input type="text" class="form-control required" id="title" name="title" maxlength="128">
+                                        <input type="text" class="form-control required" id="title" name="title" maxlength="128" autocomplete="">
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +42,14 @@
                                 </div>
                                 <div class="col-md-4">                                
                                     <div class="form-group">
-                                        <label for="projectLoc">Project Location</label>
+                                        <label for="projectLoc">Project Site</label>
                                         <input type="text" class="form-control required" id="projectLoc" name="projectLoc" maxlength="128">
                                     </div> 
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label for="yearApproved">Year Approved</label>
                                     <div class="input-group">
-                                        <input id="yearApproved" type="text" name="yearApproved" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                        <input id="yearApproved" type="text" name="yearApproved" value="" class="form-control" placeholder="dd-mm-yyyy" autocomplete="" />
                                         <span class="input-group-addon"><label for="yearApproved"><i class="fa fa-calendar"></i></label></span>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <label for="dateReleased">Date Released</label>
                                         <div class="input-group">
-                                            <input id="dateReleased" type="text" name="dateReleased" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <input id="dateReleased" type="text" name="dateReleased" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="" />
                                             <span class="input-group-addon"><label for="dateReleased"><i class="fa fa-calendar"></i></label></span>
                                         </div>
                                     </div>
@@ -68,16 +68,16 @@
                                     <div class="form-group">
                                         <label for="projectDurFrom">Project Start</label>
                                         <div class="input-group">
-                                            <input id="projectDurFrom" type="text" name="projectDurFrom" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <input id="projectDurFrom" type="text" name="projectDurFrom" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="" />
                                             <span class="input-group-addon"><label for="projectDurFrom"><i class="fa fa-calendar"></i></label></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectDurTo">Project Start</label>
+                                        <label for="projectDurTo">Project End</label>
                                         <div class="input-group">
-                                            <input id="projectDurTo" type="text" name="projectDurTo" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="off" />
+                                            <input id="projectDurTo" type="text" name="projectDurTo" value="" class="form-control datepicker" placeholder="dd-mm-yyyy" autocomplete="" />
                                             <span class="input-group-addon"><label for="projectDurTo"><i class="fa fa-calendar"></i></label></span>
                                         </div>
                                     </div>
@@ -103,16 +103,26 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="proponent">Proponent</label>
                                         <input type="text" class="form-control required" id="proponent" name="proponent">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="beneficiries">Beneficiries</label>
-                                        <input type="text" class="form-control required equalTo" id="beneficiries" name="beneficiries">
+                                        <label for="gender">Proponent Gender</label>
+                                        <select class="form-control" name="gender" id="gender">
+                                            <option disabled selected value>Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="beneficiaries">Beneficiaries</label>
+                                        <input type="text" class="form-control required equalTo" id="beneficiaries" name="beneficiaries">
                                     </div>
                                 </div>
                             </div>
@@ -155,14 +165,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="unliquatedbal">Unliquated Balance</label>
+                                        <label for="unliquatedbal">Unliquited Balance</label>
                                         <input type="text" class="form-control equalTo" id="unliquatedbal" name="unliquatedbal">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="AmountDueLiq">Amount Due For Liquidation</label>
-                                        <input type="text" class="form-control equalTo" id="AmountDueLiq" name="AmountDueLiq">
+                                        <label for="amountDueLiquidation">Amounta Due Liquidation</label>
+                                        <input type="text" class="form-control equalTo" id="amountDueLiquidation" name="amountDueLiquidation">
                                     </div>
                                 </div>
                                 </div>
@@ -184,21 +194,21 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fundstatus">Fund Status</label>
-                                        <select class="form-control" name="fundStatus" id="fundStatus">
+                                        <label for="fundStatus">Fund Status</label>
+                                        <select class="form-control" placeholder="try" name="fundStatus" id="fundStatus">
                                             <option disabled selected value>Fund Status</option>
                                             <?php
                                               if(!empty($fundStatus))
                                               {
-                                                foreach ($fundStatus as $fs)
+                                                foreach ($fundStatus as $ps)
                                                 {
                                                     ?>
-                                                    <option value="<?php echo $fs->fundStatusId ?>"> <?php echo $fs->status ?></option>
+                                                    <option value="<?php echo $ps->fundStatusId ?>"> <?php echo $ps->status ?></option>
                                                     <?php
                                                 }
                                               }
                                             ?>
-                                        </select>
+                                          </select>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +227,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="prostatus">Project Status</label>
+                                        <label for="projectStatus">Project Status</label>
                                         <select class="form-control" placeholder="try" name="projectStatus" id="projectStatus">
                                             <option disabled selected value>Project Status</option>
                                             <?php
@@ -310,7 +320,7 @@
 
         jQuery('.datepicker').datepicker({
           autoclose: true,
-          format : "dd-mm-yyyy"
+          format : "yyyy-mm-dd"
         });
         jQuery('.resetFilters').click(function(){
           $(this).closest('form').find("input[type=text]").val("");
